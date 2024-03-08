@@ -1,0 +1,35 @@
+id	Application ID
+customer_id	Customer ID
+application_date	Application date
+target	1. default 0. facility preforming
+application_status	Application status (Approved/Rejected)
+Var1	Number of applicants
+Var2	Loan purpose
+Var3	Distribution channel
+Var4	Application amount
+Var5	Credit duration (months)
+Var6	Payment frequency
+Var7	Installment amount
+Var8	Value of the goods (car)
+Var9	Application data: income of main applicant
+Var10	Application data: income of second applicant
+Var11	Application data: profession of main applicant
+Var12	Application data: profession of second applicant
+Var13	Application data: employment date (main applicant)
+Var14	Application data: marital status of main applicant
+Var15	Application data: number of children of main applicant
+Var16	Application data: number of dependences of main applicant
+Var17	Spendings estimation
+Var18	Property ownership for property renovation
+Var19	Clasification of the vehicle (Car, Motorbike)
+Var20	Number of requests during the last 3 months (External data)
+Var21	Number of requests during the last 6 months (External data)
+Var22	Number of requests during the last 9 months (External data)
+Var23	Number of requests during the last 12 months (External data)
+Var24	Limit on credit card
+Var25	Amount on current account
+Var26	Amount on savings account
+Var27	Arrear in last 3 months (indicator)
+Var28	Arrear in last 12 months (indicator)
+Var29	Credit bureau score (Exterval data)
+Var30	Average income (Exterval data)
