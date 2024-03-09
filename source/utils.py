@@ -44,4 +44,5 @@ def get_dataFrame_withShortCols(file_name):
 
 
 def data_cleaner(df):
-    return df.dropna(subset=['Default indicator', 'Loan purpose', 'Distribution channel']).fillna(0)
+    df['Distribution channel'] = df['Distribution channel'].apply(lambda x: 4 if x == 'Direct' else (5 if x == 'Online' else x))
+    return df.drop(['Application_status', 'ID', 'Customer ID'], axis=1).dropna(subset=['Default indicator', 'Loan purpose', 'Distribution channel']).fillna(0)
