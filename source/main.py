@@ -1,5 +1,5 @@
 import pandas as pd
-from get_descriptions import get_descriptions
+from source.utils import get_descriptions
 descriptions = get_descriptions('descriptions.txt')
 
 dev = pd.read_csv('development_sample.csv')

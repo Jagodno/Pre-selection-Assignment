@@ -2,6 +2,7 @@ import pandas as pd
 import regex as re
 import os
 
+
 def get_descriptions(fname):
     descriptions = {}
     with open(fname , 'r') as file:
@@ -11,14 +12,14 @@ def get_descriptions(fname):
     return descriptions
 
 
-def get_dataFrame_withShortCols():
+def get_dataFrame_withShortCols(file_name):
     """
     Returns dataframe wwith short 
     """
     cwd = os.getcwd().replace('jupyter_notebooks', '')
     dataDict = f'{cwd}\\data'
 
-    df = pd.read_csv(f'{dataDict}\\development_sample.csv')
+    df = pd.read_csv(f'{dataDict}\\{file_name}')
     columnHeaders = pd.read_excel(f'{dataDict}\\variables_description.xlsx', sheet_name= 'List of variables')
     
     VarList = columnHeaders['Column'].values.tolist()
