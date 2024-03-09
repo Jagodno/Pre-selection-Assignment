@@ -21,7 +21,7 @@ Var15	Application data: number of children of main applicant
 Var16	Application data: number of dependences of main applicant
 Var17	Spendings estimation
 Var18	Property ownership for property renovation
-Var19	Clasification of the vehicle (Car, Motorbike)
+Var19	Clasification of the vehicle (Car, Motorbike) 
 Var20	Number of requests during the last 3 months (External data)
 Var21	Number of requests during the last 6 months (External data)
 Var22	Number of requests during the last 9 months (External data)
