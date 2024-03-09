@@ -41,3 +41,7 @@ def get_dataFrame_withShortCols(file_name):
     df.rename(columns = newColNames, inplace = True) 
     
     return df
+
+
+def data_cleaner(df):
+    return df.dropna(subset=['Default indicator', 'Loan purpose', 'Distribution channel']).fillna(0)
