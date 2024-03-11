@@ -57,9 +57,6 @@ def data_cleaner(df):
     # Add work experience column at the time of credit application
     df['work experience'] = (df['Application date'] - df['employment date']).dt.days
     
-    # Modify distribution channel column 
-    df['Distribution channel'] = df['Distribution channel'].apply(lambda x: 4 if x == 'Direct' else (5 if x == 'Online' else x))
-    
     # Drop useless columns
     df.drop(['Application_status', 'ID', 'Customer ID', 'employment date'], axis=1, inplace=True)
     
@@ -75,6 +72,10 @@ def data_cleaner(df):
 
 
 def preprocess_data(df):
+
+    # Drop direct and Online columns
+    df = df[~df['Distribution channel'].isin(['Direct', 'Online'])]
+
     # One-hot encoding Loan purpose
     df_loan_purpose = pd.get_dummies(df['Loan purpose'], prefix='loan_purpose')
     
@@ -97,6 +98,11 @@ def preprocess_data(df):
             'profession of main applicant', 'profession of second applicant',
             'marital status of main applicant'], inplace=True)
     
+    if 'Distribution channel_2.0' in df_encoded.columns:
+        df_encoded.rename(columns={'Distribution channel_2.0': 'Distribution channel_2'}, inplace=True)
+    if 'Distribution channel_3.0' in df_encoded.columns:
+        df_encoded.rename(columns={'Distribution channel_3.0': 'Distribution channel_3'}, inplace=True)
+
     return df_encoded
     
 
