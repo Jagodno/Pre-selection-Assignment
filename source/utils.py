@@ -45,12 +45,22 @@ def get_dataFrame_withShortCols(file_name = 'development_sample.csv'):
 
 def data_cleaner(df):
     df['Distribution channel'] = df['Distribution channel'].apply(lambda x: 4 if x == 'Direct' else (5 if x == 'Online' else x))
+    df['Application_status'] = df['Application_status'].apply(lambda x: 1 if x == 'Approved' else (0 if x == 'Rejected' else x))
     df['Clasification of the vehicle'] = df['Clasification of the vehicle'].fillna(2)
     # cos jeszcze z property ownership (też osobna klasa jak przy pojazdach?)
-    df['Spendings estimation'] = df['Spendings estimation'].fillna(df['Spendings estimation'].mean())
+    df['Spendings estimation'] = df['Spendings estimation'].fillna(df['Spendings estimation'].median())
     return df.drop(['Application_status', 'ID', 'Customer ID'], axis=1).dropna(subset=['Default indicator',
                                                                                        'Loan purpose',
                                                                                        'Distribution channel',
                                                                                        'Amount on current account',
                                                                                        'Amount on savings account',
                                                                                        'Value of the goods']).fillna(0)
+
+
+def handle_categorical_columns(df):
+
+    categorical_columns = ['Loan purpose', 'profession of main applicant', 'profession of second applicant',
+                           'marital status of main applicant']
+    df = pd.get_dummies(df, columns=categorical_columns, drop_first=True, dtype=int)
+
+    return df
