@@ -1,1 +1,9 @@
 *.pyc
+# Ignore cache files
+*.cache
+*.tmp
+*.log
+node_modules/
+.gradle/
+vendor/
+# Add more cache file patterns as needed
