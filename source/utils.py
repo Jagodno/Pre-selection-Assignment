@@ -75,10 +75,9 @@ def data_cleaner(df):
 
 
 def preprocess_data(df):
-    # One-hot encoding for 'Loan purpose' only
+    # One-hot encoding Loan purpose
     df_loan_purpose = pd.get_dummies(df['Loan purpose'], prefix='loan_purpose')
     
-    # Encoding based on conditions
     df['loan_purpose_1_0'] = ((df_loan_purpose['loan_purpose_1.0'] == 1) & (df['Clasification of the vehicle'] == 0)).astype(int)
     df['loan_purpose_1_1'] = ((df_loan_purpose['loan_purpose_1.0'] == 1) & (df['Clasification of the vehicle'] == 1)).astype(int)
     df['loan_purpose_2_0'] = ((df_loan_purpose['loan_purpose_2.0'] == 1) & (df['Property ownership for property renovation'] == 0)).astype(int)
@@ -94,7 +93,7 @@ def preprocess_data(df):
     df_encoded = pd.concat([df, df_loan_purpose, df_remaining], axis=1)
     
     # Drop unnecessary columns
-    df_encoded.drop(columns=['Loan purpose', 'Clasification of the vehicle', 'Property ownership for property renovation', 'Distribution channel', 'Payment frequency',
+    df_encoded.drop(columns=['Loan purpose', 'loan_purpose_1.0', 'loan_purpose_2.0', 'Clasification of the vehicle', 'Property ownership for property renovation', 'Distribution channel', 'Payment frequency',
             'profession of main applicant', 'profession of second applicant',
             'marital status of main applicant'], inplace=True)
     
