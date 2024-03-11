@@ -87,7 +87,7 @@ def preprocess_data(df):
     cols = ['Distribution channel', 'Payment frequency',
             'profession of main applicant', 'profession of second applicant',
             'marital status of main applicant']
-    df_remaining = pd.get_dummies(df[cols], columns=cols, prefix=cols)
+    df_remaining = pd.get_dummies(df[cols], columns=cols, prefix=cols, drop_first=True)
     
     # Concatenate encoded columns
     df_encoded = pd.concat([df, df_loan_purpose, df_remaining], axis=1)
@@ -99,4 +99,6 @@ def preprocess_data(df):
     
     return df_encoded
     
+
+
 
