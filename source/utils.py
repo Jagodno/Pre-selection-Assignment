@@ -91,10 +91,10 @@ def preprocess_data(df):
     df_remaining = pd.get_dummies(df[cols], columns=cols, prefix=cols, drop_first=True)
     
     # Concatenate encoded columns
-    df_encoded = pd.concat([df, df_loan_purpose, df_remaining], axis=1)
+    df_encoded = pd.concat([df, df_remaining], axis=1)
     
     # Drop unnecessary columns
-    df_encoded.drop(columns=['Loan purpose', 'loan_purpose_1.0', 'loan_purpose_2.0', 'Clasification of the vehicle', 'Property ownership for property renovation', 'Distribution channel', 'Payment frequency',
+    df_encoded.drop(columns=['Loan purpose', 'Clasification of the vehicle', 'Property ownership for property renovation', 'Distribution channel', 'Payment frequency',
             'profession of main applicant', 'profession of second applicant',
             'marital status of main applicant'], inplace=True)
     
