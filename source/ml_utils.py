@@ -1,5 +1,8 @@
 from sklearn.metrics import accuracy_score, confusion_matrix, auc
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from imblearn.over_sampling import SMOTE
+
 
 
 def calculate_non_correlated_features(X_train, threshold):
@@ -32,3 +35,20 @@ def plot_roc(fpr, tpr):
     plt.title('Receiver Operating Characteristic (ROC)')
     plt.legend(loc="lower right")
     plt.show()
+
+
+def get_reduced_data(train_data, val_data, selected_features):
+    X_train = train_data[selected_features]
+    y_train = train_data['Default indicator']
+
+    X_val = val_data[selected_features]
+    y_val = val_data['Default indicator']
+
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_val_scaled = scaler.transform(X_val)
+
+    smot = SMOTE(sampling_strategy=1, random_state=42)
+    oversampled_X, oversampled_Y = smot.fit_resample(X_train_scaled, y_train)
+
+    return oversampled_X, oversampled_Y, X_val_scaled, y_val
