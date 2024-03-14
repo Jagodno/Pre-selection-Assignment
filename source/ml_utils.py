@@ -6,6 +6,7 @@ from imblearn.over_sampling import SMOTE
 
 
 def calculate_non_correlated_features(X_train, threshold):
+    # return non strongly correlated features
     correlation_matrix = X_train.corr()
 
     high_correlation_mask = (abs(correlation_matrix) >= threshold) & (correlation_matrix != 1.0)
@@ -18,6 +19,7 @@ def calculate_non_correlated_features(X_train, threshold):
 
 
 def print_results(y_val, y_pred):
+    # print accuracy and confusion matrix
     accuracy = accuracy_score(y_val, y_pred)
     print("Accuracy:", accuracy)
 
@@ -25,7 +27,9 @@ def print_results(y_val, y_pred):
     print("Confusion Matrix:")
     print(conf_matrix)
 
+
 def plot_roc(fpr, tpr):
+    # plot roc curve with calculated auc
     roc_auc = auc(fpr, tpr)
     plt.figure()
     plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
@@ -38,6 +42,7 @@ def plot_roc(fpr, tpr):
 
 
 def get_reduced_data(train_data, val_data, selected_features):
+    # return oversampled and reduced by strongly correlated features data
     X_train = train_data[selected_features]
     y_train = train_data['Default indicator']
 
