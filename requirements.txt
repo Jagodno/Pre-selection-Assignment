@@ -2,3 +2,8 @@ pandas
 regex
 seaborn 
 openpyxl
+numpy
+matplotlib
+scikit-learn
+statsmodels
+xgboost
